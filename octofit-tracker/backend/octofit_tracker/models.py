@@ -15,7 +15,7 @@ class Activity(models.Model):
     _id = models.ObjectIdField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     activity_type = models.CharField(max_length=100)
-    duration = models.IntegerField()  # Duration in minutes
+    duration = models.DurationField()
 
 class Leaderboard(models.Model):
     _id = models.ObjectIdField()

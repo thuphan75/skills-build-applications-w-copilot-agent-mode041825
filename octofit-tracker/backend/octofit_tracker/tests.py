@@ -1,4 +1,5 @@
 from django.test import TestCase
+from datetime import timedelta
 from .models import User, Team, Activity, Leaderboard, Workout
 
 class UserModelTest(TestCase):
@@ -22,11 +23,11 @@ class TeamModelTest(TestCase):
 class ActivityModelTest(TestCase):
     def setUp(self):
         user = User.objects.create(username="activityuser", email="activityuser@example.com", password="password123")
-        Activity.objects.create(user=user, activity_type="Running", duration="01:00:00")
+        Activity.objects.create(user=user, activity_type="Running", duration=timedelta(hours=1))
 
     def test_activity_creation(self):
         activity = Activity.objects.get(activity_type="Running")
-        self.assertEqual(activity.duration, "01:00:00")
+        self.assertEqual(activity.duration, timedelta(hours=1))
 
 class LeaderboardModelTest(TestCase):
     def setUp(self):
